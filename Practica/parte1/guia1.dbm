@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" last-position="0,0" last-zoom="0.7" max-obj-count="18"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="Ejercicio1" is-template="false" allow-conns="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="Persona" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="0" y="40"/>
+	<column name="dni" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tipoDNI" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<column name="nombrePersona" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<column name="sexo" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="Persona_pk" type="pk-constr" table="public.&quot;Persona&quot;">
+		<columns names="dni,tipoDNI" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Localidad" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="540" y="120"/>
+	<column name="codPostal" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nombreLocalidad" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="Localidad_pk" type="pk-constr" table="public.&quot;Localidad&quot;">
+		<columns names="codPostal" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Provincia" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1160" y="120"/>
+	<column name="id_Provincia" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nombreProvincia">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="Provincia_pk" type="pk-constr" table="public.&quot;Provincia&quot;">
+		<columns names="id_Provincia" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Empleado" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="580" y="360"/>
+	<column name="idEmpleado" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="fecha_ingreso" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="empleado_pk" type="pk-constr" table="public.&quot;Empleado&quot;">
+		<columns names="idEmpleado" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Historial" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1200" y="320"/>
+	<column name="fechaInicio" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fechaFin">
+		<type name="date" length="0"/>
+	</column>
+</table>
+
+<relationship name="Provincia_has_many_Localidad" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#33eed8"
+	 src-table="public.&quot;Provincia&quot;"
+	 dst-table="public.&quot;Localidad&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Localidad_has_many_Persona" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#8f9528"
+	 src-table="public.&quot;Localidad&quot;"
+	 dst-table="public.&quot;Persona&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-5.49471" y="-76.2261"/>
+	</label>
+</relationship>
+
+<relationship name="Localidad_could_have_Persona" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#491140"
+	 src-table="public.&quot;Localidad&quot;"
+	 dst-table="public.&quot;Persona&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-3.99471" y="1.69389"/>
+	</label>
+</relationship>
+
+<relationship name="Persona_has_many_Empleado" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#37f874"
+	 src-table="public.&quot;Persona&quot;"
+	 dst-table="public.&quot;Empleado&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Empleado_has_many_Historial" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#87a263"
+	 src-table="public.&quot;Empleado&quot;"
+	 dst-table="public.&quot;Historial&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-2.65331" y="-33.1012"/>
+	</label>
+</relationship>
+
+<table name="Cargo" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1820" y="120"/>
+	<column name="id_cargo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombreCargo" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="Cargo_pk" type="pk-constr" table="public.&quot;Cargo&quot;">
+		<columns names="id_cargo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Cargo_has_many_Historial" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#456561"
+	 src-table="public.&quot;Cargo&quot;"
+	 dst-table="public.&quot;Historial&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Sala" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1260" y="580"/>
+	<column name="nro_sala" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nom_sala">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="Sala_pk" type="pk-constr" table="public.&quot;Sala&quot;">
+		<columns names="nro_sala" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="idEmpleado_Empleado" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="Empleado_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="Empleado_has_many_Sala" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#064ee9"
+	 src-table="public.&quot;Empleado&quot;"
+	 dst-table="public.&quot;Sala&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="35.3467" y="-8.7433"/>
+	</label>
+</relationship>
+
+<table name="Medico" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1380" y="880"/>
+	<column name="matricula" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="Medio_pk" type="pk-constr" table="public.&quot;Medico&quot;">
+		<columns names="matricula" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Asignacion" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="640" y="640"/>
+	<column name="id_asignacion" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="Asignacion_pk" type="pk-constr" table="public.&quot;Asignacion&quot;">
+		<columns names="id_asignacion" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Empleado_has_many_Asignacion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e9d609"
+	 src-table="public.&quot;Empleado&quot;"
+	 dst-table="public.&quot;Asignacion&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="71.6899" y="-37.653"/>
+	</label>
+</relationship>
+
+<relationship name="Medico_has_many_Asignacion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#510e74"
+	 src-table="public.&quot;Medico&quot;"
+	 dst-table="public.&quot;Asignacion&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Persona_has_many_Asignacion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3d2767"
+	 src-table="public.&quot;Persona&quot;"
+	 dst-table="public.&quot;Asignacion&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Sala_has_many_Asignacion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#588e7e"
+	 src-table="public.&quot;Sala&quot;"
+	 dst-table="public.&quot;Asignacion&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Especialidad" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1880" y="320"/>
+	<column name="id_especialidad" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombreEspecialidad" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="Especialidad_pk" type="pk-constr" table="public.&quot;Especialidad&quot;">
+		<columns names="id_especialidad" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Especialidad_has_many_Medico" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a6ea45"
+	 src-table="public.&quot;Especialidad&quot;"
+	 dst-table="public.&quot;Medico&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-50.3961" y="43.647"/>
+	</label>
+</relationship>
+
+<relationship name="Sala_has_many_Especialidad" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#4477a1"
+	 src-table="public.&quot;Sala&quot;"
+	 dst-table="public.&quot;Especialidad&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Sector" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1920" y="560"/>
+	<column name="id_sector" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombreSector" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="Sector_pk" type="pk-constr" table="public.&quot;Sector&quot;">
+		<columns names="id_sector" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Seccion" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2380" y="120"/>
+	<column name="id_seccion" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombreSeccion" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="Seccion_pk" type="pk-constr" table="public.&quot;Seccion&quot;">
+		<columns names="id_seccion" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Seccion_has_many_Sector" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#64a4a4"
+	 src-table="public.&quot;Seccion&quot;"
+	 dst-table="public.&quot;Sector&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="73.3495" y="-33.753"/>
+	</label>
+</relationship>
+
+<relationship name="Sector_has_many_Sala" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#99222f"
+	 src-table="public.&quot;Sector&quot;"
+	 dst-table="public.&quot;Sala&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="62.9955" y="-23.147"/>
+	</label>
+</relationship>
+
+</dbmodel>

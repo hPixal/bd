@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" last-position="0,0" last-zoom="0.8" max-obj-count="14"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="Rol" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="20" y="300"/>
+	<column name="id_rol" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tipo_rol">
+		<type name="character" length="60"/>
+	</column>
+	<column name="codigo_rol">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="Rol_pk" type="pk-constr" table="public.&quot;Rol&quot;">
+		<columns names="id_rol" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Actor" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="500" y="40"/>
+	<column name="id_actor" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="codigo_actor" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cuit_cod1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="cuit_cod2">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cuit_cod3">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="email_principal">
+		<type name="character" length="255"/>
+	</column>
+	<column name="fecha_alta" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_baja">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="Actor_pk" type="pk-constr" table="public.&quot;Actor&quot;">
+		<columns names="id_actor" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Usuario" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1060" y="380"/>
+	<column name="id_usuario" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="apellido_nombre" not-null="true">
+		<type name="character" length="255"/>
+	</column>
+	<column name="fecha_alta" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="hash">
+		<type name="character" length="255"/>
+	</column>
+	<column name="time_hash">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="fecha_baja">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="Usuario_pk" type="pk-constr" table="public.&quot;Usuario&quot;">
+		<columns names="id_usuario" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Persona_Juridica" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1200" y="100"/>
+	<column name="id_persona_juridica" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_fantasia">
+		<type name="character" length="255"/>
+	</column>
+	<column name="razon_social">
+		<type name="character" length="255"/>
+	</column>
+	<constraint name="Persona_Juridica_pk" type="pk-constr" table="public.&quot;Persona_Juridica&quot;">
+		<columns names="id_persona_juridica" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Tipo_Persona_Juridica" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1960" y="140"/>
+	<column name="id_tipo_persona" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="cod_tipo_persona_juridica" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nombre_tipo_persona" not-null="true">
+		<type name="character" length="255"/>
+	</column>
+	<column name="nombre_tipo_persona_juridica_resumida" not-null="true">
+		<type name="character" length="20"/>
+	</column>
+	<constraint name="Tipo_Persona_Juridica_pk" type="pk-constr" table="public.&quot;Tipo_Persona_Juridica&quot;">
+		<columns names="id_tipo_persona" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Ocupacion" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="0" y="800"/>
+	<column name="id_ocupacion" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="codigo_ocupacion" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nombre_ocupacion" not-null="true">
+		<type name="character" length="255"/>
+	</column>
+	<column name="nombre_ocupacion_resumido" not-null="true">
+		<type name="character" length="60"/>
+	</column>
+	<constraint name="ocupacion_pk" type="pk-constr" table="public.&quot;Ocupacion&quot;">
+		<columns names="id_ocupacion" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Organismo" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="480" y="640"/>
+	<column name="id_organismo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_organismo" not-null="true">
+		<type name="character" length="255"/>
+	</column>
+	<column name="sigla">
+		<type name="character" length="60"/>
+	</column>
+	<constraint name="organismo_pk" type="pk-constr" table="public.&quot;Organismo&quot;">
+		<columns names="id_organismo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Persona_Fisica" layers="0" collapse-mode="2" max-obj-count="19" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1020" y="880"/>
+	<column name="id_persona_fisica" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="documento_identidad_tipo">
+		<type name="character" length="255"/>
+	</column>
+	<column name="documento_identidad_numero">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="apellido" not-null="true">
+		<type name="character" length="255"/>
+	</column>
+	<column name="fecha_nacimiento" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character" length="255"/>
+	</column>
+	<column name="movil_principal">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="sexo" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="factor_sanguineo">
+		<type name="character" length="255"/>
+	</column>
+	<column name="grupo_sanguineo">
+		<type name="character" length="255"/>
+	</column>
+	<column name="dondante_organos">
+		<type name="character" length="255"/>
+	</column>
+	<column name="email_personal">
+		<type name="character" length="255"/>
+	</column>
+	<column name="identidad_genero">
+		<type name="character" length="255"/>
+	</column>
+	<column name="estado_civil" not-null="true">
+		<type name="character" length="1"/>
+	</column>
+	<constraint name="Persona_Fisica_pk" type="pk-constr" table="public.&quot;Persona_Fisica&quot;">
+		<columns names="id_persona_fisica" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="documento_uk" type="uq-constr" table="public.&quot;Persona_Fisica&quot;">
+		<columns names="documento_identidad_tipo,documento_identidad_numero" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Funcion" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1440" y="420"/>
+	<column name="id_funcion" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="codigo_funcion" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_funcion" not-null="true">
+		<type name="character" length="60"/>
+	</column>
+	<column name="nombre_funcion_resumido">
+		<type name="character" length="20"/>
+	</column>
+	<constraint name="Funcion_pk" type="pk-constr" table="public.&quot;Funcion&quot;">
+		<columns names="id_funcion" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Integra_organismo" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2000" y="640"/>
+	<column name="id_integra_organismo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="secuencia" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="fecha_alta" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_baja">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="Integra_organismo_pk" type="pk-constr" table="public.&quot;Integra_organismo&quot;">
+		<columns names="id_integra_organismo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Rol_has_one_Actor" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#514c5a"
+	 src-table="public.&quot;Actor&quot;"
+	 dst-table="public.&quot;Rol&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-18.2221" y="-25.0548"/>
+	</label>
+</relationship>
+
+<relationship name="Usuario_has_one_Actor" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a26165"
+	 src-table="public.&quot;Actor&quot;"
+	 dst-table="public.&quot;Usuario&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="Organismo_has_one_Actor" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#1d9f62"
+	 src-table="public.&quot;Actor&quot;"
+	 dst-table="public.&quot;Organismo&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Persona_Fisica_has_one_Actor" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ef636b"
+	 src-table="public.&quot;Actor&quot;"
+	 dst-table="public.&quot;Persona_Fisica&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="35.1602" y="-31.553"/>
+	</label>
+</relationship>
+
+<relationship name="Ocupacion_has_many_Persona_Fisica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#8ae91d"
+	 src-table="public.&quot;Ocupacion&quot;"
+	 dst-table="public.&quot;Persona_Fisica&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="83.7217" y="-41.6989"/>
+	</label>
+</relationship>
+
+<relationship name="Persona_Juridica_has_one_Actor" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#25552d"
+	 src-table="public.&quot;Actor&quot;"
+	 dst-table="public.&quot;Persona_Juridica&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-14.9154" y="-25.1393"/>
+	</label>
+</relationship>
+
+<relationship name="Persona_Juridica_has_many_Tipo_Persona_Juridica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#c5af62"
+	 src-table="public.&quot;Persona_Juridica&quot;"
+	 dst-table="public.&quot;Tipo_Persona_Juridica&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-15.1674" y="-22.6931"/>
+	</label>
+</relationship>
+
+<relationship name="Funcion_has_many_Integra_organismo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0f8c45"
+	 src-table="public.&quot;Funcion&quot;"
+	 dst-table="public.&quot;Integra_organismo&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-72.7969" y="-34.459"/>
+	</label>
+</relationship>
+
+<relationship name="Persona_Fisica_has_many_Integra_organismo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a75939"
+	 src-table="public.&quot;Persona_Fisica&quot;"
+	 dst-table="public.&quot;Integra_organismo&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Organismo_has_many_Integra_organismo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f1432e"
+	 src-table="public.&quot;Organismo&quot;"
+	 dst-table="public.&quot;Integra_organismo&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="56.292" y="-36.8122"/>
+	</label>
+</relationship>
+
+<table name="IntegraPersona_Juridica" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="0" y="1220"/>
+	<column name="id_persona_juridica" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="secuencia" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="fecha_alta" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_baja">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="secuencia_uk" type="uq-constr" table="public.&quot;IntegraPersona_Juridica&quot;">
+		<columns names="secuencia" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="IntegraPersona_Juridica_pk" type="pk-constr" table="public.&quot;IntegraPersona_Juridica&quot;">
+		<columns names="id_persona_juridica" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Persona_Fisica_has_many_IntegraPersona_Juridica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#2665df"
+	 src-table="public.&quot;Persona_Fisica&quot;"
+	 dst-table="public.&quot;IntegraPersona_Juridica&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Organismo_has_many_IntegraPersona_Juridica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#1b949a"
+	 src-table="public.&quot;Organismo&quot;"
+	 dst-table="public.&quot;IntegraPersona_Juridica&quot;"
+	 src-required="true" dst-required="false"/>
+
+</dbmodel>

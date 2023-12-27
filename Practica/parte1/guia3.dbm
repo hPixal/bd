@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" last-position="0,221" last-zoom="0.7" max-obj-count="18"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="casado" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="820" y="20"/>
+	<column name="item_casamiento" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="fecha_casamiento" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_fin_casamiento">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="casado_pk" type="pk-constr" table="public.casado">
+		<columns names="item_casamiento" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="persona" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="180" y="300"/>
+	<column name="nro_documento" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tipo_doc" not-null="true">
+		<type name="char" length="3"/>
+	</column>
+	<column name="sexo" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<column name="apellido" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<column name="fecha_nacimiento" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="domicilio" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="persona_pk" type="pk-constr" table="public.persona">
+		<columns names="nro_documento,tipo_doc,sexo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="empleado" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="840" y="520"/>
+	<column name="legajo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="fecha_ingreso" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="telefono" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="empleado_pk" type="pk-constr" table="public.empleado">
+		<columns names="legajo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="empleado_has_one_persona" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#34ab6a"
+	 src-table="public.persona"
+	 dst-table="public.empleado"
+	 src-required="true" dst-required="false"/>
+
+<table name="hijo" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="0" y="880"/>
+</table>
+
+<relationship name="persona_has_many_hijo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a1b9f0"
+	 src-table="public.persona"
+	 dst-table="public.hijo"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<relationship name="empleado_has_many_hijo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#25cbf3"
+	 src-table="public.empleado"
+	 dst-table="public.hijo"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<relationship name="persona_has_many_casado" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#737f0c"
+	 src-table="public.persona"
+	 dst-table="public.casado"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="empleado_has_many_casado" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ee2c8a"
+	 src-table="public.empleado"
+	 dst-table="public.casado"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<table name="historia_estado_civil" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1400" y="80"/>
+	<column name="fecha_inicio_ec" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_fin_ec">
+		<type name="date" length="0"/>
+	</column>
+	<column name="observacion_estado">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="historia_estado_civil_pk" type="pk-constr" table="public.historia_estado_civil">
+		<columns names="fecha_inicio_ec" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="empleado_has_many_historia_estado_civil" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#6c29b4"
+	 src-table="public.empleado"
+	 dst-table="public.historia_estado_civil"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<table name="estado_civil" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1400" y="600"/>
+	<column name="cod_estado_civil" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_estado_civil" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="estado_civil_pk" type="pk-constr" table="public.estado_civil">
+		<columns names="cod_estado_civil" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="estado_civil_has_many_historia_estado_civil" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#70b3cf"
+	 src-table="public.estado_civil"
+	 dst-table="public.historia_estado_civil"
+	 src-required="true" dst-required="false"/>
+
+<table name="categoria" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="860" y="1040"/>
+	<column name="fecha_inicio_categoria" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="categoria" not-null="true">
+		<type name="integer" length="32"/>
+	</column>
+	<column name="fecha_fin_categoria">
+		<type name="date" length="0"/>
+	</column>
+	<column name="observaciones_de_categoria">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="categoria_pk" type="pk-constr" table="public.categoria">
+		<columns names="fecha_inicio_categoria" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="empleado_has_many_categoria" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#333b19"
+	 src-table="public.empleado"
+	 dst-table="public.categoria"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<table name="asignacion" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1360" y="900"/>
+	<column name="fecha_comienzo_asignacion" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_fin_asignacion" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="asignacion_pk" type="pk-constr" table="public.asignacion">
+		<columns names="fecha_comienzo_asignacion" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="empleado_has_many_asignacion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#b1336a"
+	 src-table="public.empleado"
+	 dst-table="public.asignacion"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<table name="oficina" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1980" y="940"/>
+	<column name="codigo_oficina" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_oficina" not-null="true">
+		<type name="character" length="0"/>
+	</column>
+	<constraint name="oficina_pk" type="pk-constr" table="public.oficina">
+		<columns names="codigo_oficina" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="oficina_has_many_asignacion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ae7dd8"
+	 src-table="public.oficina"
+	 dst-table="public.asignacion"
+	 src-required="true" dst-required="false"/>
+
+<table name="nivel" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2000" y="1280"/>
+	<column name="codigo_nivel" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nombre_nivel" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="nivel_pk" type="pk-constr" table="public.nivel">
+		<columns names="codigo_nivel" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="nivel_has_many_oficina" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#b7bdea"
+	 src-table="public.nivel"
+	 dst-table="public.oficina"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+>
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<table name="funcion" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1560" y="1240"/>
+	<column name="codigo_funcion" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_funcion" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<column name="categoria_funcion" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="funcion_pk" type="pk-constr" table="public.funcion">
+		<columns names="codigo_funcion" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="funcion_has_many_categoria" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#bee790"
+	 src-table="public.funcion"
+	 dst-table="public.categoria"
+	 src-required="true" dst-required="false"/>
+
+<table name="a_cargo" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="300" y="1280"/>
+	<column name="fecha_inicio" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="a_cargo_pk" type="pk-constr" table="public.a_cargo">
+		<columns names="fecha_inicio" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="familiar" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1200" y="1420"/>
+	<column name="codigo_vinculacion_familiar" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_vinculo_familiar" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="familiar_pk" type="pk-constr" table="public.familiar">
+		<columns names="codigo_vinculacion_familiar" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="persona_has_many_a_cargo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#519c0a"
+	 src-table="public.persona"
+	 dst-table="public.a_cargo"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+>
+	<label ref-type="name-label">
+		<position x="50.6527" y="198.952"/>
+	</label>
+</relationship>
+
+<relationship name="empleado_has_many_a_cargo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#867ed8"
+	 src-table="public.empleado"
+	 dst-table="public.a_cargo"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+>
+	<label ref-type="name-label">
+		<position x="-71.6622" y="17.6515"/>
+	</label>
+</relationship>
+
+<relationship name="familiar_has_many_a_cargo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#9452e3"
+	 src-table="public.familiar"
+	 dst-table="public.a_cargo"
+	 src-required="true" dst-required="false"/>
+
+</dbmodel>

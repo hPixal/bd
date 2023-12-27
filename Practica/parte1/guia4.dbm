@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="13"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="persona" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="720" y="380"/>
+	<column name="id_persona" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="codigo_persona">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="telefono">
+		<type name="character" length="32"/>
+	</column>
+	<column name="telefonoMovil">
+		<type name="character" length="32"/>
+	</column>
+	<column name="correoElectronico">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="persona_pk" type="pk-constr" table="public.persona">
+		<columns names="id_persona" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="codigo_persona_uk" type="uq-constr" table="public.persona">
+		<columns names="codigo_persona" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="codigo_pais" index="6"/>
+		<object name="id_tipo_doc_tipoDocumento" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="pais_fk" index="3"/>
+		<object name="tipoDocumento_fk" index="2"/>
+	</customidxs>
+</table>
+
+<table name="personaJuridica" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="100" y="780"/>
+	<column name="id_personajuridica" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cuit" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="razonSocial" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nombreFantasia" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="personaJuridica_pk" type="pk-constr" table="public.&quot;personaJuridica&quot;">
+		<columns names="id_personajuridica" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="cuit_uk" type="uq-constr" table="public.&quot;personaJuridica&quot;">
+		<columns names="cuit" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_persona_persona" index="4"/>
+		<object name="id_tipo_persona_tipoPersonaJuridica" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="persona_fk" index="1"/>
+		<object name="tipoPersonaJuridica_fk" index="2"/>
+	</customidxs>
+</table>
+
+<table name="personafisica" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1200" y="860"/>
+	<column name="id_personafisica" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="numeroDocumento" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="apellido" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<column name="fechaNacimiento" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="sexo" not-null="true">
+		<type name="bool" length="0"/>
+	</column>
+	<column name="observaciones">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="personafisica_pk" type="pk-constr" table="public.personafisica">
+		<columns names="id_personafisica" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="numeroDocumento_uk" type="uq-constr" table="public.personafisica">
+		<columns names="numeroDocumento" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_persona_persona" index="7"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="persona_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="personafisica_has_one_persona" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#71fffb"
+	 src-table="public.persona"
+	 dst-table="public.personafisica"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<relationship name="persona_has_many_personaJuridica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#987ba7"
+	 src-table="public.persona"
+	 dst-table="public.&quot;personaJuridica&quot;"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+>
+	<label ref-type="name-label">
+		<position x="-13.9096" y="-42.3485"/>
+	</label>
+</relationship>
+
+<table name="domicilio" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="180" y="0"/>
+	<column name="item" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="observaciones">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="domicilio_pk" type="pk-constr" table="public.domicilio">
+		<columns names="item" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="localidad" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1380" y="40"/>
+	<column name="codigo_localidad" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="localidad_pk" type="pk-constr" table="public.localidad">
+		<columns names="codigo_localidad" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipo_domicilio" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1300" y="260"/>
+	<column name="id_domicilio" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="codigo_tipo_domicilio" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombretipo" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="tipo_domicilio_pk" type="pk-constr" table="public.tipo_domicilio">
+		<columns names="id_domicilio" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="codigo_tipo_domicilio_uk" type="uq-constr" table="public.tipo_domicilio">
+		<columns names="codigo_tipo_domicilio" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="localidad_has_many_domicilio" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#555b2b"
+	 src-table="public.localidad"
+	 dst-table="public.domicilio"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="tipo_domicilio_has_many_domicilio" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#689241"
+	 src-table="public.tipo_domicilio"
+	 dst-table="public.domicilio"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="persona_has_many_domicilio" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#354902"
+	 src-table="public.persona"
+	 dst-table="public.domicilio"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+>
+	<label ref-type="name-label">
+		<position x="-12.9566" y="-70.9727"/>
+	</label>
+</relationship>
+
+<table name="tipoDocumento" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1420" y="480"/>
+	<column name="id_tipo_doc" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombreDoc" not-null="true">
+		<type name="character" length="3"/>
+	</column>
+	<constraint name="tipoDocumento_pk" type="pk-constr" table="public.&quot;tipoDocumento&quot;">
+		<columns names="id_tipo_doc" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="nombre_doc_uk" type="uq-constr" table="public.&quot;tipoDocumento&quot;">
+		<columns names="nombreDoc" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tipoDocumento_has_many_persona" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a9f789"
+	 src-table="public.&quot;tipoDocumento&quot;"
+	 dst-table="public.persona"
+	 src-required="true" dst-required="false"/>
+
+<table name="integraPersonaJuridica" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="480" y="1200"/>
+	<column name="id_integraPersona" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="item" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="integraPersonaJuridica_pk" type="pk-constr" table="public.&quot;integraPersonaJuridica&quot;">
+		<columns names="id_integraPersona" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="item_uk" type="uq-constr" table="public.&quot;integraPersonaJuridica&quot;">
+		<columns names="item" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_codigo_funcion" index="6"/>
+		<object name="id_persona_persona_personaJuridica" index="3"/>
+		<object name="id_persona_persona_personafisica" index="5"/>
+		<object name="id_personafisica_personafisica" index="4"/>
+		<object name="id_personajuridica_personaJuridica" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="funcion_fk" index="3"/>
+		<object name="personaJuridica_fk" index="1"/>
+		<object name="personafisica_fk" index="2"/>
+	</customidxs>
+</table>
+
+<relationship name="personaJuridica_has_many_integraPersonaJuridica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#b257b6"
+	 src-table="public.&quot;personaJuridica&quot;"
+	 dst-table="public.&quot;integraPersonaJuridica&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="43.7398" y="-40.253"/>
+	</label>
+</relationship>
+
+<relationship name="personafisica_has_many_integraPersonaJuridica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a2ba1e"
+	 src-table="public.personafisica"
+	 dst-table="public.&quot;integraPersonaJuridica&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="funcion" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1300" y="1260"/>
+	<column name="id_codigo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="codigo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_funcion" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="funcion_pk" type="pk-constr" table="public.funcion">
+		<columns names="id_codigo" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="codigo_uk" type="uq-constr" table="public.funcion">
+		<columns names="codigo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="funcion_has_many_integraPersonaJuridica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#76150d"
+	 src-table="public.funcion"
+	 dst-table="public.&quot;integraPersonaJuridica&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="tipoPersonaJuridica" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="20" y="1180"/>
+	<column name="id_tipo_persona" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="codigo_tipo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_tipo" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="tipoPersonaJuridica_pk" type="pk-constr" table="public.&quot;tipoPersonaJuridica&quot;">
+		<columns names="id_tipo_persona" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="codigo_tipo_uk" type="uq-constr" table="public.&quot;tipoPersonaJuridica&quot;">
+		<columns names="codigo_tipo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tipoPersonaJuridica_has_many_personaJuridica" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#05d35d"
+	 src-table="public.&quot;tipoPersonaJuridica&quot;"
+	 dst-table="public.&quot;personaJuridica&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="pais" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="400"/>
+	<column name="codigo" not-null="true">
+		<type name="character" length="2"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character" length="32"/>
+	</column>
+	<constraint name="codigo_pk" type="pk-constr" table="public.pais">
+		<columns names="codigo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="pais_has_many_persona" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#db9d1a"
+	 src-table="public.pais"
+	 dst-table="public.persona"
+	 src-required="true" dst-required="false"/>
+
+</dbmodel>

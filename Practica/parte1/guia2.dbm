@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" last-position="0,0" last-zoom="0.65" max-obj-count="18"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="Localidad" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="880" y="0"/>
+	<column name="codPostal" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombreLocalidad" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="Localidad_pk" type="pk-constr" table="public.&quot;Localidad&quot;">
+		<columns names="codPostal" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Persona" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="800" y="300"/>
+	<column name="tipoDocumento" not-null="true">
+		<type name="character" length="3"/>
+	</column>
+	<column name="nroDocumento" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="apellido" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<column name="domicilio" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<column name="fechaNacimiento" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="Persona_pk" type="pk-constr" table="public.&quot;Persona&quot;">
+		<columns names="tipoDocumento,nroDocumento" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="profesor" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1360" y="120"/>
+	<column name="telefono" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<column name="fecha_ingreso" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_alta" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_baja">
+		<type name="date" length="0"/>
+	</column>
+</table>
+
+<relationship name="Persona_has_many_profesor" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#d0deec"
+	 src-table="public.&quot;Persona&quot;"
+	 dst-table="public.profesor"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+>
+	<label ref-type="name-label">
+		<position x="29.5728" y="-38.953"/>
+	</label>
+</relationship>
+
+<table name="estudiante" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="60"/>
+	<column name="libreta_universitaria" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="fecha_de_ingreso" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="observaciones">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="estudiante_pk" type="pk-constr" table="public.estudiante">
+		<columns names="libreta_universitaria" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="estudiante_has_one_Persona" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#153e2b"
+	 src-table="public.&quot;Persona&quot;"
+	 dst-table="public.estudiante"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Localidad_has_many_Persona" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#acfefe"
+	 src-table="public.&quot;Localidad&quot;"
+	 dst-table="public.&quot;Persona&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Localidad_has_many_estudiante" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a7ea64"
+	 src-table="public.&quot;Localidad&quot;"
+	 dst-table="public.estudiante"
+	 src-required="true" dst-required="false"/>
+
+<table name="condicion" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="660" y="700"/>
+	<column name="condicion" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<column name="nota_final" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+</table>
+
+<table name="notas_parciales" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="580" y="1280"/>
+	<column name="parcial" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="nota" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="notas_parciales_pk" type="pk-constr" table="public.notas_parciales">
+		<columns names="parcial" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="dicta" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2600" y="120"/>
+	<column name="dicta_desde" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="dicta_hasta">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="dicta_pk" type="pk-constr" table="public.dicta">
+		<columns names="dicta_desde" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cursado" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1420" y="460"/>
+	<column name="comision" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="fecha_inicio" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="fecha_fin" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="cursado_pk" type="pk-constr" table="public.cursado">
+		<columns names="comision,fecha_inicio" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="estudiante_has_many_condicion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#4622d7"
+	 src-table="public.estudiante"
+	 dst-table="public.condicion"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<relationship name="cursado_has_many_condicion" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#748da3"
+	 src-table="public.cursado"
+	 dst-table="public.condicion"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<relationship name="estudiante_has_many_notas_parciales" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#05b145"
+	 src-table="public.estudiante"
+	 dst-table="public.notas_parciales"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<relationship name="cursado_has_many_notas_parciales" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#fe13e0"
+	 src-table="public.cursado"
+	 dst-table="public.notas_parciales"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<table name="cargo" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1940" y="120"/>
+	<column name="codigo_cargo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_cargo" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="cargo_pk" type="pk-constr" table="public.cargo">
+		<columns names="codigo_cargo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="cargo_has_many_dicta" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#7441aa"
+	 src-table="public.cargo"
+	 dst-table="public.dicta"
+	 src-required="true" dst-required="false"/>
+
+<table name="materia" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1980" y="460"/>
+	<column name="cod_materia" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_materia" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="materia_pk" type="pk-constr" table="public.materia">
+		<columns names="cod_materia" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="materia_has_many_cargo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#6bfa10"
+	 src-table="public.materia"
+	 dst-table="public.cargo"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+>
+	<label ref-type="name-label">
+		<position x="70.5751" y="-12.0485"/>
+	</label>
+</relationship>
+
+<relationship name="profesor_has_many_cargo" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#853ab3"
+	 src-table="public.profesor"
+	 dst-table="public.cargo"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<table name="carrera" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2640" y="460"/>
+	<column name="cod_carrera" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_carrera" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="carrera_pk" type="pk-constr" table="public.carrera">
+		<columns names="cod_carrera" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="facultad" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="3200" y="120"/>
+	<column name="cod_facultad" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_carrera" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="facultad_pk" type="pk-constr" table="public.facultad">
+		<columns names="cod_facultad" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="facultad_has_many_carrera" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#cb3db0"
+	 src-table="public.facultad"
+	 dst-table="public.carrera"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="carrera_has_many_materia" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#016275"
+	 src-table="public.carrera"
+	 dst-table="public.materia"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<relationship name="materia_has_many_cursado" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a753be"
+	 src-table="public.materia"
+	 dst-table="public.cursado"
+	 src-required="true" dst-required="false"
+	 identifier="true"
+/>
+
+<table name="departamento" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2700" y="700"/>
+	<column name="cod_departamento" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre_departamento" not-null="true">
+		<type name="character" length="30"/>
+	</column>
+	<constraint name="departamento_pk" type="pk-constr" table="public.departamento">
+		<columns names="cod_departamento" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="departamento_has_many_materia" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#00ab4d"
+	 src-table="public.departamento"
+	 dst-table="public.materia"
+	 src-required="true" dst-required="false"/>
+
+</dbmodel>
